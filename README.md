@@ -1,7 +1,4 @@
----
-
 # QR Code Attendance System
-
 
 ## Overview
 
@@ -13,18 +10,66 @@ The QR Code Attendance System is a Python-based project designed to streamline a
 - **QR Code Scanning**: Scans and records attendance by decoding QR codes using a webcam or mobile device.
 - **Attendance Log**: Maintains a digital log of attendees, providing a convenient and accurate attendance record.
 
-## Project Components
+## Setup
 
-- **Python Codebase**: Contains Python scripts responsible for QR code generation, scanning, and attendance recording.
-- **Dependencies**: Lists necessary libraries and dependencies required to run the project.
-- **Setup Instructions**: Guidelines on setting up the system and running the application.
+Setup the development environment
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+Install zbar shared library
+
+```bash
+sudo apt update
+sudo apt install libzbar0
+```
+
+Install dependencies
+
+```bash
+python3 -m pip install -r requirements.txt
+```
 
 ## Usage
 
-1. **Setup**: Install the required libraries and dependencies as specified in the instructions.
-2. **Generate QR Codes**: Generate unique QR codes for attendees or participants using the provided functionalities.
-3. **Attendance Recording**: Use a webcam or mobile device to scan the QR codes and automatically record attendance.
-4. **Access Logs**: Access and manage the attendance log for reference and tracking purposes.
+### **Generate QR Codes**
+
+Generate unique QR codes for attendees or participants.
+
+Create a text file named `data/attendees.txt` listing the attendees. Each line of the file represents one attendee, 
+it should contain any text that uniquely identifies the person.
+
+For example `<ID> <FULL NAME>`:
+
+```
+13983390 PEREZ GALINDO JUAN
+48277105 MARTINEZ LOPEZ ANA
+90541237 GOMEZ RODRIGUEZ CARLOS
+31764982 HERNANDEZ CRUZ MARIA
+76820541 TORRES VARGAS LUIS 
+```
+
+Use the `generate.py` script to generate an individual QR code for each attendee.
+
+```bash
+python3 ./generate.py
+```
+
+The resulting codes are stored in `data/qr`.  
+Distribute the codes among the attendees.
+
+### **Attendance Recording**
+
+Use a webcam or mobile device to scan the QR codes and automatically record attendance.
+
+```bash
+python3 ./attend.py
+```
+
+When finished taking attendance press `s` to save the attendance data and close the camera capture window.
+
+You can find the attendance list as a `csv` file in `data/attendance`.
 
 ## Contributions
 

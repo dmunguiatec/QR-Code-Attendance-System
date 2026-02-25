@@ -1,9 +1,11 @@
-from MyQR import myqr
-import os
 import base64
+import os
+import re
+
+from MyQR import myqr
 
 #Create and read
-f = open('students.txt' , 'r')
+f = open('data/attendees.txt' , 'r')
 lines = f.read().split("\n")
 print(lines)
 
@@ -19,6 +21,6 @@ for i in range(0 , len(lines)):
         colorized = True,
         contrast = 1.0,
         brightness = 1.0,
-        save_name = str(lines[i]+'.bmp'),
+        save_name = 'data/qr/' + str(re.sub(r"\s+", "_", lines[i]) + '.bmp'),
         save_dir = os.getcwd()
     )
