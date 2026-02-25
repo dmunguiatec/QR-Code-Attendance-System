@@ -290,4 +290,5 @@ pyrightconfig.json
 
 .idea/
 *.txt
+!requirements.txt
 *.bmp
