@@ -11,14 +11,16 @@ cap = cv2.VideoCapture(0)
 names = []
 
 #function for attendance file
-fob = open(f'data/attendance/{datetime.now().strftime("%Y%m%d-%H:%M:%S")}.csv' , 'a+')
+attendance_filename = f'data/attendance/{datetime.now().strftime("%Y%m%d-%H:%M:%S")}.csv'
 
 def enterData(data, plain_data):
     if data in names:
         pass
     else:
         names.append(data)
-        fob.write(f'{plain_data},{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
+        with open(attendance_filename , 'a+') as fob:
+            fob.write(f'{plain_data},{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
+
         return names
 
 print("Reading the scanned QR code....")
@@ -54,5 +56,3 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('s'):
         cv2.destroyAllWindows()
         break
-
-fob.close()
